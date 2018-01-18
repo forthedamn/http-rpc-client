@@ -1,0 +1,14 @@
+{
+  "name": "http-rpc-client",
+  "version": "1.2.3",
+  "description": "基于 http 的 RPC Client",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "zhongguoxin <zhongguoxin@meituan.com>",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "tslib": "^1.8.1"
+  }
+}
