@@ -1,6 +1,6 @@
 {
   "name": "http-rpc-client",
-  "version": "1.2.3",
+  "version": "1.2.5",
   "description": "基于 http 的 RPC Client",
   "main": "index.js",
   "scripts": {},
