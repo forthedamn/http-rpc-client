@@ -12,11 +12,11 @@ import axios, {AxiosRequestConfig} from 'axios';
  export async function get<URL extends keyof IGetRoute>(url: URL, config?: AxiosRequestConfig): Promise<any> {
   const res =  await axios.get(url, config);
   if (!res) {
-    throw new Error('请求失败，没有数据返回');
+    throw { msg: '请求失败，没有数据返回' };
   }
   const {code, data} = res.data;
   if (code) {
-    throw data;
+    throw res;
   } else {
     return data;
   }
@@ -25,11 +25,11 @@ import axios, {AxiosRequestConfig} from 'axios';
 export async function post<URL extends keyof IPostRoute>(url: URL, postdata?: any, config?: AxiosRequestConfig): Promise<any> {
   const res = await axios.post(url, postdata, config);
   if (!res) {
-    throw new Error('请求失败，没有数据返回');
+    throw { msg: '请求失败，没有数据返回' };
   }
   const {code, data} = res.data;
   if (code) {
-    throw data;
+    throw res;
   } else {
     return data;
   }
