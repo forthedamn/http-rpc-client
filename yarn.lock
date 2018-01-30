@@ -2,12 +2,54 @@
 # yarn lockfile v1
 
 
+"@dp/dpapp-core@^1.0.1":
+  version "1.0.5"
+  resolved "http://r.npm.sankuai.com/@dp/dpapp-core/download/@dp/dpapp-core-1.0.5.tgz#a13e4300da52b66137c752e8fcd6eb06c9a513fd"
+  dependencies:
+    promise "^7.1.1"
+
+"@dp/dpapp@1.7.0":
+  version "1.7.0"
+  resolved "http://r.npm.sankuai.com/@dp/dpapp/download/@dp/dpapp-1.7.0.tgz#d73f1635aa45fcff81ce92c995d1b90f0f0c69e6"
+  dependencies:
+    "@dp/dpapp-core" "^1.0.1"
+
+"@dp/knb@^1.5.8":
+  version "1.5.8"
+  resolved "http://r.npm.sankuai.com/@dp/knb/download/@dp/knb-1.5.8.tgz#6bf156a7a459d3b63eef135f8496f6bf4ef8c4ae"
+  dependencies:
+    "@dp/dpapp" "1.7.0"
+    "@dp/weixin-js-sdk-loader" "^0.2.0"
+    "@hfe/hbnb" "0.4.5"
+    pinkie "2.0.4"
+
+"@dp/weixin-js-sdk-loader@^0.2.0":
+  version "0.2.0"
+  resolved "http://r.npm.sankuai.com/@dp/weixin-js-sdk-loader/download/@dp/weixin-js-sdk-loader-0.2.0.tgz#e2ddf267caaf63ebcc9386fb3d72640087707281"
+
+"@hfe/hbnb@0.4.5":
+  version "0.4.5"
+  resolved "http://r.npm.sankuai.com/@hfe/hbnb/download/@hfe/hbnb-0.4.5.tgz#c8505c1793a85eacd73ac7b98c9d1cd1ee693c01"
+  dependencies:
+    debug "2.2.0"
+    pinkie "2.0.4"
+
+asap@~2.0.3:
+  version "2.0.6"
+  resolved "http://r.npm.sankuai.com/asap/download/asap-2.0.6.tgz#e50347611d7e690943208bbdafebcbc2fb866d46"
+
 axios@^0.17.1:
   version "0.17.1"
   resolved "https://registry.npmjs.org/axios/-/axios-0.17.1.tgz#2d8e3e5d0bdbd7327f91bc814f5c57660f81824d"
   dependencies:
     follow-redirects "^1.2.5"
     is-buffer "^1.1.5"
+
+debug@2.2.0:
+  version "2.2.0"
+  resolved "http://r.npm.sankuai.com/debug/download/debug-2.2.0.tgz#f87057e995b1a1f6ae6a4960664137bc56f039da"
+  dependencies:
+    ms "0.7.1"
 
 debug@^3.1.0:
   version "3.1.0"
@@ -25,10 +67,28 @@ is-buffer@^1.1.5:
   version "1.1.6"
   resolved "https://registry.npmjs.org/is-buffer/-/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
 
+ms@0.7.1:
+  version "0.7.1"
+  resolved "http://r.npm.sankuai.com/ms/download/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
+
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
 
+pinkie@2.0.4:
+  version "2.0.4"
+  resolved "http://r.npm.sankuai.com/pinkie/download/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
+
+promise@^7.1.1:
+  version "7.3.1"
+  resolved "http://r.npm.sankuai.com/promise/download/promise-7.3.1.tgz#064b72602b18f90f29192b8b1bc418ffd1ebd3bf"
+  dependencies:
+    asap "~2.0.3"
+
 tslib@^1.8.1:
   version "1.8.1"
   resolved "https://registry.npmjs.org/tslib/-/tslib-1.8.1.tgz#6946af2d1d651a7b1863b531d6e5afa41aa44eac"
+
+typescript@^2.6.2:
+  version "2.6.2"
+  resolved "http://r.npm.sankuai.com/typescript/download/typescript-2.6.2.tgz#3c5b6fd7f6de0914269027f03c0946758f7673a4"
