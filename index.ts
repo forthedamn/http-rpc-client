@@ -13,6 +13,35 @@ interface IConfig extends AxiosRequestConfig {
   loadingText: string;
 }
 
+type ServerResp = {
+  /**
+   * 后端返回的错误码
+   */
+  code?: number,
+  msg?: string,
+  /**
+   * 附加数据
+   */
+  // tslint:disable-next-line:no-any
+  data?: any,
+}
+
+
+export class ServerError extends Error {
+  code?: number;
+  // tslint:disable-next-line:no-any
+  data?: any;
+  msg?: string;
+
+  constructor(option: ServerResp) {
+    super();
+    this.code = option.code;
+    this.data = option.data;
+    this.msg = option.msg;
+  };
+
+}
+
 /**
  * 目前提供 get 和 post 两种方法
  */
@@ -24,7 +53,7 @@ interface IConfig extends AxiosRequestConfig {
   }
   const {code, data} = res.data;
   if (code) {
-    throw res;
+    throw new ServerError(res.data);
   } else {
     return data;
   }
@@ -37,7 +66,7 @@ export async function post<URL extends keyof IPostRoute>(url: URL, postdata?: an
   }
   const {code, data} = res.data;
   if (code) {
-    throw res;
+    throw new ServerError(res.data);
   } else {
     return data;
   }
