@@ -42,11 +42,15 @@ export class ServerError extends Error {
 
 }
 
+// 默认超时时间 5 秒
+const DEFAULT_TIMEOUT = 5000;
+
 /**
  * 目前提供 get 和 post 两种方法
  */
 
  export async function get<URL extends keyof IGetRoute>(url: URL, config?: IConfig): Promise<any> {
+  config.timeout = config.timeout || DEFAULT_TIMEOUT;
   const res =  await axios.get(url, config);
   if (!res) {
     throw { msg: '获取数据失败，请重试' };
@@ -60,6 +64,7 @@ export class ServerError extends Error {
 }
 
 export async function post<URL extends keyof IPostRoute>(url: URL, postdata?: any, config?: IConfig): Promise<any> {
+  config.timeout = config.timeout || DEFAULT_TIMEOUT;
   const res = await axios.post(url, postdata, config);
   if (!res) {
     throw { msg: '获取数据失败，请重试' };
@@ -117,9 +122,11 @@ axios.interceptors.response.use((response) => {
   if (close) {
     close();
   }
-  if (response && response.data && String(response.data.code) === '401') {
-    return KNB.login();
-  }
+  if (response && response.data &&
+      (String(response.data.code) === '401' || String(response.data.code) === '403'))
+    {
+      return KNB.login();
+    }
   return response;
 }, (error) => {
   if (close) {
