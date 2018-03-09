@@ -10,7 +10,7 @@ import axios, {AxiosRequestConfig} from 'axios';
 export const instance = axios;
 
 interface IConfig extends AxiosRequestConfig {
-  loadingText: string;
+  loadingText?: string;
 }
 
 type ServerResp = {
@@ -49,8 +49,9 @@ const DEFAULT_TIMEOUT = 5000;
  * 目前提供 get 和 post 两种方法
  */
 
- export async function get<URL extends keyof IGetRoute>(url: URL, config?: IConfig): Promise<any> {
-  config.timeout = config.timeout || DEFAULT_TIMEOUT;
+export async function get<URL extends keyof IGetRoute>(url: URL, config?: IConfig): Promise<any> {
+  config = config || {};
+  config.timeout = (config && config.timeout) || DEFAULT_TIMEOUT;
   const res =  await axios.get(url, config);
   if (!res) {
     throw { msg: '获取数据失败，请重试' };
@@ -64,7 +65,8 @@ const DEFAULT_TIMEOUT = 5000;
 }
 
 export async function post<URL extends keyof IPostRoute>(url: URL, postdata?: any, config?: IConfig): Promise<any> {
-  config.timeout = config.timeout || DEFAULT_TIMEOUT;
+  config = config || {};
+  config.timeout = (config && config.timeout) || DEFAULT_TIMEOUT;
   const res = await axios.post(url, postdata, config);
   if (!res) {
     throw { msg: '获取数据失败，请重试' };
@@ -77,33 +79,31 @@ export async function post<URL extends keyof IPostRoute>(url: URL, postdata?: an
   }
 }
 
-// export async function put<URL extends keyof IPostRoute>(url: URL, postdata?: any, config?: IConfig): Promise<any> {
-//   const res = await axios.put(url, postdata, config);
-//   if (!res) {
-//     throw { msg: '获取数据失败，请重试' };
-//   }
-//   const {code, data} = res.data;
-//   if (code) {
-//     throw res;
-//   } else {
-//     return data;
-//   }
-// }
+export async function put<URL extends keyof IPostRoute>(url: URL, postdata?: any, config?: IConfig): Promise<any> {
+  const res = await axios.put(url, postdata, config);
+  if (!res) {
+    throw { msg: '获取数据失败，请重试' };
+  }
+  const {code, data} = res.data;
+  if (code) {
+    throw res;
+  } else {
+    return data;
+  }
+}
 
-// export async function dlt<URL extends keyof IPostRoute>(url: URL, config?: IConfig): Promise<any> {
-//   const res = await axios.delete(url, config);
-//   if (!res) {
-//     throw { msg: '获取数据失败，请重试' };
-//   }
-//   const {code, data} = res.data;
-//   if (code) {
-//     throw res;
-//   } else {
-//     return data;
-//   }
-// }
-
-
+export async function dlt<URL extends keyof IPostRoute>(url: URL, config?: IConfig): Promise<any> {
+  const res = await axios.delete(url, config);
+  if (!res) {
+    throw { msg: '获取数据失败，请重试' };
+  }
+  const {code, data} = res.data;
+  if (code) {
+    throw res;
+  } else {
+    return data;
+  }
+}
 
 let close;
 
