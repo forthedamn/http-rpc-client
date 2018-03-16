@@ -5,6 +5,10 @@ export interface IGetRoute {}
 
 export interface IPostRoute {}
 
+export interface IPutRoute {}
+
+export interface IDeleteRoute {}
+
 import axios, {AxiosRequestConfig} from 'axios';
 
 export const instance = axios;
